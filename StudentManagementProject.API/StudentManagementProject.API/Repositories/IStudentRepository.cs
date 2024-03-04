@@ -4,7 +4,7 @@ namespace StudentManagementProject.API.Repositories
 {
     public interface IStudentRepository
     {
-        List<Student> GetStudents();
+       Task<List<Student>> GetAllStudentsAsync();
 
     }
 }
