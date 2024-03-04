@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <div class="w-full items-center flex justify-between" >
+        <!-- logo -->
+        <img src="/assets/logo.svg" class="w-[60%] xl:w-[20%] cursor-pointer" routerLink="/" routerLinkActive="router-link-active"  alt="Nurettin KAYNAR" />
+        <!-- menü -->
+        <ul class=" hidden xl:flex items-center gap-2 list-none">
+            <li routerLink="" routerLinkActive="text-red-500  "  class="font-medium leading-loose hover:underline tracking-widest hover:text-red-500 transition-all duration-300 cursor-pointer text-lg">Öğrenci Listesi</li>
+            <li class="font-medium hover:text-red-500 transition-all duration-300 cursor-pointer text-lg">Veli Listesi</li>
+            <li class="font-medium hover:text-red-500 transition-all duration-300 cursor-pointer text-lg">Öğrenci Kaydet</li>
+        </ul>
+            <button class="md:hidden inline-block" mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <ul class=" list-none">
+                <li
+                routerLink=""
+                routerLinkActive="text-red-500  "
+                class="font-medium leading-loose hover:underline tracking-widest hover:text-red-500 transition-all duration-300 cursor-pointer text-lg px-2 py-3 border-b-2">Öğrenci Listesi</li>
+                <li 
+                class="font-medium hover:text-red-500 transition-all duration-300 cursor-pointer text-lg px-2 py-3 border-b-2">Veli Listesi</li>
+                <li 
+                class="font-medium hover:text-red-500 transition-all duration-300 cursor-pointer text-lg px-2 py-3">Öğrenci Kaydet</li>
+            </ul>
+          </mat-menu>
+    </div>
+</mat-toolbar>

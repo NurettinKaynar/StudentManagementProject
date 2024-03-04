@@ -36,6 +36,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home-component/home-component.component';
 
 @Component({
   selector: 'app-root',
@@ -45,6 +47,8 @@ import { RouterOutlet } from '@angular/router';
   [
     RouterOutlet,
     CommonModule,
+    HomeComponent,
+    NavbarComponent,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
