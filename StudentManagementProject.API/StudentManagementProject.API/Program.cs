@@ -11,6 +11,7 @@ builder.Services.AddDbContext<StudentAdminContext>(opt => opt.UseSqlServer(build
 builder.Services.AddScoped<IStudentRepository, SqlStudentRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
