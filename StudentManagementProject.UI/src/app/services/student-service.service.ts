@@ -13,4 +13,8 @@ export class StudentService {
   getAllStudents(): Observable<StudentModel[]> {
     return this.http.get<StudentModel[]>(`${ApiPath.BASE_URL}${ApiPath.STUDENTS}`);
   }
+
+  getStudent(studentId:string):Observable<StudentModel>{
+    return this.http.get<StudentModel>(`${ApiPath.BASE_URL}${ApiPath.STUDENTS}/${studentId}`)
+  }
 }

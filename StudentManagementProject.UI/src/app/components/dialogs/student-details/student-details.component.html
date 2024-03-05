@@ -1,1 +1,111 @@
-<p>student-details works!</p>
+<h2 mat-dialog-title>{{studentData.firstName}} {{studentData.lastName}} Öğrencinin Detayları</h2>
+<mat-dialog-content>
+   <div [ngSwitch]="data.state">
+    <!-- ShowStundetDetails -->
+    <div *ngSwitchCase="StudentViewEnum.SHOW">
+    <div *ngIf="studentData" class="w-full items-center justify-center flex flex-col gap-2" >
+            <img [src]="studentData.profileImageUrl? studentData.profileImageUrl:'assets/avatar.svg' " class="w-40 h-40" />
+            <div class="flex w-full flex-col gap-2 justify-center items-center" >
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >Name:</span>
+                    <span class=" flex-1" >{{studentData.firstName}}</span>
+                </div>
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >LastName:</span>
+                    <span class="flex-1 " >{{studentData.lastName}}</span>
+                </div>
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >E-Mail:</span>
+                    <span class="flex-1 " >{{studentData.email}}</span>
+                </div>
+                <div class="flex  items-start justify-between w-full" >
+                    <span class="flex-1" >Phone:</span>
+                    <span class="flex-1 " >{{studentData.mobile}}</span>
+                </div>
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >Birth Date:</span>
+                    <span class="flex-1 " >{{studentData.dateOfBirth |date:'dd/MM/YYYY'}}</span>
+                </div>
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >Gender:</span>
+                    <span class="flex-1 " >{{studentData.gender.description}}</span>
+                </div>
+                <div class="flex  justify-between w-full" >
+                    <span class="flex-1" >Address:</span>
+                    <span class="flex-1 " >{{studentData.address.physicalAddress?studentData.address.physicalAddress:'Address Not Found'}}</span>
+                </div>
+            </div>
+    </div>
+
+    </div>
+
+    <div *ngSwitchCase="StudentViewEnum.EDIT "  >
+        <div class="grid grid-cols-2 gap-4" >
+
+            <div class="col-span-2 flex  items-center justify-center" >
+                <div class="relative " >
+                    <img [src]="studentData.profileImageUrl? studentData.profileImageUrl:'assets/avatar.svg' " class="w-40 h-40" />
+                    <div class="rounded-full absolute right-0 bg-indigo-800 p-2 flex justify-center items-center bottom-0 z-30 text-white">
+                        <mat-icon aria-hidden="false" aria-label="edit" fontIcon="edit"/>
+                    </div>
+                </div>
+            </div>
+            <div class=" flex flex-col gap-2" >
+                <label for="firstName" class="font-sm">First Name</label>
+                <div class="rounded border flex items-center  p-2 text-lg">
+                    <mat-icon aria-hidden="false"  aria-label="person" fontIcon="person"/>
+                    <input type="text" name="firstName" placeholder="Enter First Name" id="firstName-input" class="outline-none">
+                </div>
+            </div>
+            <div class=" flex flex-col gap-2" >
+                <label for="lastName" class="font-sm">Last Name</label>
+                <div class="rounded border flex items-center  p-2 text-lg">
+                    <mat-icon aria-hidden="false"  aria-label="person" fontIcon="person"/>
+                    <input type="text" name="lastName" placeholder="Enter Last Name" id="lastName-input" class="outline-none">
+                </div>
+            </div>
+            <div class=" flex flex-col gap-2" >
+                <label for="email" class="font-sm">Email</label>
+                <div class="rounded border flex items-center  p-2 text-lg">
+                    <mat-icon aria-hidden="false"  aria-label="mail" fontIcon="mail"/>
+                    <input type="email" name="email" placeholder="Enter E-Mail" id="email-input" class="outline-none">
+                </div>
+            </div>
+            <div class=" flex flex-col gap-2" >
+                <label for="phone" class="font-sm">Phone</label>
+                <div class="rounded border flex items-center  p-2 text-lg">
+                    <mat-icon aria-hidden="false"  aria-label="call" fontIcon="call"/>
+                    <input type="tel" name="phone" placeholder="Enter phone" id="phone-input" class="outline-none">
+                </div>
+            </div>
+            <div class=" col-span-2 flex flex-col gap-2" >
+                <label for="Select Gender" class="font-sm">Phone</label>
+                <div class="rounded border flex items-center  p-2 text-lg">
+                    <mat-icon aria-hidden="false"  aria-label="call" fontIcon="call"/>
+                    <input type="tel" name="phone" placeholder="Enter phone" id="phone-input" class="outline-none">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+   </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="w-full">
+    <div [ngSwitch]="data.state" class="w-full">
+        <div *ngSwitchCase="StudentViewEnum.SHOW" class="w-full flex justify-end items-end gap-4">
+        
+            <button mat-flat-button color="warn" (click)="data.state=StudentViewEnum.EDIT" color="primary"> <mat-icon aria-hidden="false" aria-label="edit" fontIcon="edit"/> Düzenle</button>
+            <button mat-flat-button color="warn" mat-dialog-close color="warn"> <mat-icon aria-hidden="false" aria-label="close" fontIcon="close"/> Kapat</button>
+        </div>
+    </div>
+    <div  >
+
+        
+    </div>
+  </mat-dialog-actions>
