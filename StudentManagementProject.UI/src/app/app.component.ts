@@ -37,12 +37,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home-component/home-component.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `<router-outlet></router-outlet>`,
+  template: `
+  <div class="flex flex-col gap-2" >
+    <app-navbar/>
+    <router-outlet/>
+  </div>`,
   imports: 
   [
     RouterOutlet,
