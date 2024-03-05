@@ -1,26 +1,31 @@
 import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { StudentModel } from '../../api';
+import { StudentModel } from '../../api/models';
 import { StudentService } from '../../services/student-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { StudentDetailsComponent } from '../../components/dialogs/student-details/student-details.component';
+import { StudentView } from '../../api/enums';
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
-  imports:[MatTableModule,DatePipe,MatPaginator,MatSortModule,MatIconModule]
+  imports:[MatTableModule,DatePipe,MatPaginator,MatSortModule,MatIconModule,MatButtonModule]
 })
 export class HomeComponent implements OnInit {
 
   students:StudentModel[]=[]
-  displayedColumns: string[] = ['name', 'lastName', 'dateOfBirth', 'email','mobile','gender','address'];
+  displayedColumns: string[] = ['name', 'lastName', 'dateOfBirth', 'email','mobile','gender','address',"operations"];
+  studentViewEnum=StudentView
   dataSource:MatTableDataSource<StudentModel>=new MatTableDataSource<StudentModel>();
   @ViewChild(MatPaginator) paginator!:MatPaginator
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private studentService:StudentService){
+  constructor(private studentService:StudentService,private dialog:MatDialog){
 
     this.getAllStudents()
   }
@@ -58,6 +63,23 @@ export class HomeComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  showStudentDetails(student:StudentModel, state:StudentView){
+    const dialogRef=this.dialog.open(StudentDetailsComponent,{
+      width:"568px",
+      height:"600px",
+      maxWidth:"100%",
+      minWidth:"568px",
+      data:{
+        studentId:student.id,
+        state:state
+      }
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log("StudentView Dialog Kapatıldı",result);
+      
+    })
   }
 
 }

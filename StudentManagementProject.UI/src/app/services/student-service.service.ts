@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StudentModel } from '../api';
+import { StudentModel } from '../api/models';
 import { ApiPath } from '../constants/ApiPaths';
 
 @Injectable({
